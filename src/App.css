@@ -1,0 +1,585 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1d2634;
+  color: #9e9ea4;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.icon {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 25px;
+  
+}
+.icon_header {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 26px;
+}
+.icon, .icon_header {
+  margin-right: 5px;
+}
+
+.close_icon {
+  color: red;
+  margin-left: 30px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+    'sidebar header header header'
+    'sidebar main main main';
+  height: 100vh;
+}
+
+/* Header  */
+.headerr {
+  grid-area: header;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+}
+
+.menu-icon {
+  display: none;
+}
+/* End Header  */
+
+
+/* Sidebar  */
+#sidebar {
+  grid-area: sidebar;
+  height: 100vh;
+  overflow-y: hidden;
+  transition: all 0.2s;
+}
+
+#sidebar .nadi{
+  background-color: #381263;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px 0px 30px;
+  margin-bottom: 30px;
+}
+
+.sidebar-title > span {
+  display: none;
+}
+
+.sidebar-brand {
+  margin-top: 15px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.sidebar-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.sidebar-list-item {
+  padding:  20px 20px 20px;
+  font-size: 25px;
+
+}
+
+.sidebar-list-item:hover {
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  cursor: pointer;
+  transition: 0.5s;
+  transform: scale(1.1,1.1);
+}
+
+.sidebar-list-item > a {
+  text-decoration: none;
+  color: #9e9ea4;
+margin-left: 20px;
+}
+
+.sidebar-responsive {
+  display: inline !important;
+  position: absolute;
+  /*
+    we want the z-index of the sidebar higher so that
+    the charts are not showing over the sidebar 
+    on small screens
+  */
+  z-index: 12 !important;
+}
+
+/* End Sidebar  */
+
+
+/* Main  */  
+.main-container {
+  grid-area: main;
+  overflow-y: auto;
+  padding: 20px 20px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.main-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border-radius: 18px;
+}
+
+.card:first-child {
+  background-color: #691096;
+}
+
+.card:nth-child(2) {
+  background-color: #691096;
+}
+
+.card:nth-child(3) {
+  background-color: #691096;
+}
+
+.card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.card-inner > .card_icon {
+  font-size: 25px;
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 60px;
+  height: 300px;
+}
+
+/* End Main  */
+
+
+/* Medium <= 992px */
+  
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      'header'
+      'main';
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+
+  .sidebar-title > span {
+    display: inline;
+  }
+}
+/* Small <= 768px */
+  
+@media screen and (max-width: 768px) {
+  .main-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .charts {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+}
+
+/* Extra Small <= 576px */
+
+@media screen and (max-width: 576px) {
+  .hedaer-left {
+    display: none;
+  }
+}
+
+
+
+
+
+/* Login*/
+.logout{
+  position: absolute;
+  bottom: 0;
+  left: 0; 
+  width: 260px;
+  font-size: 25px;
+  margin-bottom: 110px;
+  text-align: center;
+  cursor: pointer;  
+}
+.copyright{
+  position: absolute;
+  bottom: 0;
+  left: 0; 
+  width: 250px; 
+  height: 80px;
+  text-align: center;
+  background-color: #310b44;
+}
+.cp{
+  padding-top: 10px;
+}
+.logout:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  transform: scale(1.1,1.1);
+}
+
+.container{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../src/assets/login.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.enerdrive{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../src/assets/logo-no-background.png');
+ background-size: contain;
+ background-repeat: no-repeat;
+ height: 20%;
+ width: 20%;
+}
+
+.left-container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.right-container{
+  flex: 1;
+}
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  margin-top: 30px;
+}
+.text{
+  color: rgb(255, 255, 255);
+  font-size: 48px;
+  font-weight: 700;
+}
+.text1{
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+}
+.span{
+  color: #3c009d;
+}
+.span2{
+  color: #3c009d;
+  cursor: pointer;
+}
+.span2:hover{
+  color: rgb(56, 25, 232);
+  transition: 50ms;
+  font-weight: bold;
+}
+.underline{
+  width: 620px;
+  height: 1px;
+  background: #3c009d;
+  border-radius: 9px;
+  
+}
+.inputs{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+}
+.input{
+display: flex;
+align-items: center;
+width: 480px;
+height: 80;
+background: #eaeaea;
+border-radius: 15px;
+}
+.label{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 400px;
+  color: #797979;
+}
+.input input{
+  height: 50px;
+  width:400px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #797979;
+  font-size: 19px;
+
+}
+
+.submit-container{
+  display: flex;
+  gap: 30px;
+  margin: 60px auto;
+}
+
+.submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 225px;
+  height: 59px;
+  color: #fff;
+  background:#4c00b4 ;
+  border-radius: 15px;
+  font-size: 19px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.gray{
+  background: #EAEAEA;
+  color: #676767;
+}
+
+/*sreach bar*/
+
+.search{
+  /* border: solid red; */
+  
+}
+.form-control{
+  background: transparent;
+  width: 400Px;
+  margin: 40px;
+  margin-left: 60px;
+  height: 30px;
+  border-radius: 10px;
+  color: #fefefe;
+  font-size: 20px;
+}
+.form-control:hover{
+  transition: 0.5s;
+  transform: scale(1.1,1.1);
+}
+
+/*card cars*/
+.cardd {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform ease-in-out 0.3s;
+  background-color: var(--background-alt);
+  color: var(--text);
+  border: solid 1px;
+  margin-left: 40px;
+  width: 530px;
+  
+}
+
+.cardd:hover {
+  transform: scale(1.025);
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.card-thumbnail-wrapper {
+  max-height: 255px;
+  overflow: hidden;
+}
+
+.card-thumbnail {
+  transform: scale(1);
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  transition: transform ease-in-out 0.3s;
+}
+
+.cardd:hover .card-thumbnail {
+  transform: scale(1.05);
+}
+
+.result{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem 0rem;
+}
+
+.cont{
+  width: 100%;
+}
+
+table {
+width: 100rem;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  
+}
+
+th {
+  font-weight: bold;
+}
+
+/* .tab{
+  width: 1600px;
+  height: 600px;
+  margin-left: 70px;
+} */
+
+.tab{
+ 
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-left: 70px;
+}
+
+.col{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.coll{
+  width: 800px;
+  font-size: x-large;
+  
+}
+
+
+
+.imgg{
+  max-width: 380px;
+  max-height: 320px;
+  width: auto;
+  height: auto;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: red;
+  outline: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+  margin-left: 100px;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: translateX(100%);
+  background: #fff;
+}
+
+input[type="checkbox"]:checked {
+  background: #00ed64;
+}
+
+
+.fuel-column {
+  text-align: center;
+}
+
+.fuel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px; /* Adjust the width as needed */
+  margin: 0 auto;
+}
+
+.fuel-container input {
+  width: 50px; /* Adjust the width as needed */
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.fuel-container button {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fuel-container button:hover {
+  background-color: #45a049;
+}
