@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import AuthService from '../Auth/AuthService'; // Replace with the correct path to AuthService
 import axios from 'axios';
 
-export const LoginSignup = () => {
+const LoginSignup = () => {
   const [loginMode, setLoginMode] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null); // Added error state
 
   const handleLogin = async () => {
-    const isAuthenticated = await AuthService.login(email, password);
-    if (isAuthenticated) {
-      window.location.replace(window.location.origin + '/');
-    } else {
-      console.error('Login failed. Invalid credentials.');
+    try {
+      const isAuthenticated = await AuthService.login(email, password);
+      if (isAuthenticated) {
+        window.location.replace(window.location.origin + '/');
+      } else {
+        setError('Login failed. Invalid credentials.');
+      }
+    } catch (error) {
+      setError('Login failed. An error occurred.');
     }
   };
 
@@ -28,76 +33,77 @@ export const LoginSignup = () => {
       console.log('Registration successful:', response.data);
       setLoginMode(true); // After registration, switch to login mode
     } catch (error) {
-      console.error('Registration error:', error.response.data);
+      setError('Registration failed. An error occurred.');
     }
   };
 
   return (
-    <div className='container'>
-      <div className='enerdrive'></div>
-      <div className='left-container'>
-        <div className='header'>
-          <div className='text'>
-            WELCOME TO ENER<span className='span'>DRIVE</span>
-          </div>
-          <div className='text1'>
-            {loginMode ? "You don't have an account? Sign up now" : 'Already have an account? Login now'}
-          </div>
-          <div className='underline' onClick={() => setLoginMode(!loginMode)}>
-            {loginMode ? 'Sign up now' : 'Login now'}
-          </div>
+    <div className="container flex h-screen">
+      <div className="m-auto max-w-md w-full">
+        <h1 className="text-3xl text-center mb-6">Welcome to ENERDRIVE</h1>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>} {/* Display error message */}
+        <p className="text-center text-gray-600 mb-4">
+          {loginMode ? "You don't have an account? Sign up now" : 'Already have an account? Login now'}
+        </p>
+        <div className="text-center mb-4 cursor-pointer text-blue-500" onClick={() => setLoginMode(!loginMode)}>
+          {loginMode ? 'Sign up now' : 'Login now'}
         </div>
         {loginMode ? (
           // Login inputs
           <>
-            <div className='inputs'>
-              <h3 className='label'>Email</h3>
-              <div className='input'>
-                <input type='email' onChange={(e) => setEmail(e.target.value)} />
-              </div>
+            <div className="mb-4">
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-4 py-2 border rounded-md"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <div className='inputs'>
-              <h3 className='label'>Password</h3>
-              <div className='input'>
-                <input type='password' onChange={(e) => setPassword(e.target.value)} />
-              </div>
+            <div className="mb-4">
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-2 border rounded-md"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <div className='submit-container'>
-              <div className='submit' onClick={handleLogin}>
-                Login
-              </div>
-            </div>
+            <button className="w-full bg-blue-500 text-white py-2 rounded-md" onClick={handleLogin}>
+              Login
+            </button>
           </>
         ) : (
           // Registration inputs
           <>
-            <div className='inputs'>
-              <h3 className='label'>Name</h3>
-              <div className='input'>
-                <input type='text' onChange={(e) => setName(e.target.value)} />
-              </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-full px-4 py-2 border rounded-md"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-            <div className='inputs'>
-              <h3 className='label'>Email</h3>
-              <div className='input'>
-                <input type='email' onChange={(e) => setEmail(e.target.value)} />
-              </div>
+            <div className="mb-4">
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-4 py-2 border rounded-md"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <div className='inputs'>
-              <h3 className='label'>Password</h3>
-              <div className='input'>
-                <input type='password' onChange={(e) => setPassword(e.target.value)} />
-              </div>
+            <div className="mb-4">
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full px-4 py-2 border rounded-md"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <div className='submit-container'>
-              <div className='submit' onClick={handleRegister}>
-                Register
-              </div>
-            </div>
+            <button className="w-full bg-blue-500 text-white py-2 rounded-md" onClick={handleRegister}>
+              Register
+            </button>
           </>
         )}
       </div>
-      <div className='right-container'></div>
     </div>
   );
 };

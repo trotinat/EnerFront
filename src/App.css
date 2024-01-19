@@ -583,3 +583,11 @@ input[type="checkbox"]:checked {
 .fuel-container button:hover {
   background-color: #45a049;
 }
+
+.delete{
+  font-size: 20px;
+  border-radius: 8px;
+  background-color: rgb(255, 0, 0);
+  color: #ffff;
+  margin-left: 30px;
+}

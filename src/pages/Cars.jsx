@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
-import AuthService from '../Auth/AuthService'; // Update the path
-
-import './styles/CreateCar.css'; // Adjust the path based on your project structure
+import AuthService from '../Auth/AuthService';
 
 const CreateCar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    // Fetch cars from the specified endpoint
     const fetchCars = async () => {
       try {
         const response = await axios.get('http://localhost:8888/CAR-SERVICE/api/car');
-
         if (response && response.data) {
           setCars(response.data);
         }
@@ -22,7 +18,6 @@ const CreateCar = () => {
         console.error('Failed to fetch cars:', error.message);
       }
     };
-
     fetchCars();
   }, []);
 
@@ -36,15 +31,10 @@ const CreateCar = () => {
 
   const handleButtonClick = async (carId) => {
     try {
-      // Fetch the current user from local storage
       const currentUser = AuthService.getCurrentUser();
-
       if (currentUser) {
-        // Extract the user ID
         const userId = currentUser.id;
-
         await axios.get(`http://localhost:8888/CLIENT-SERVICE/api/client/affect/${carId}/${userId}`);
-
         console.log(`Car with ID ${carId} added to the user with ID ${userId}`);
       }
     } catch (error) {
@@ -53,27 +43,25 @@ const CreateCar = () => {
   };
 
   return (
-    <div className='cont'>
-      <div className='search'>
+    <div className='container mx-auto p-4'>
+      <div className='flex items-center mb-4'>
         <input
           type='text'
-          className='form-control'
+          className='form-input px-4 py-2 border border-gray-300 rounded-md w-full'
           placeholder='Search...'
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <FaSearch className='search-icon' />
+        <FaSearch className='ml-2 text-gray-600' />
       </div>
-      <div className='result'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {cars.filter(filterCars).map((car) => (
-          <div className='cardd' key={car.id}>
-            <div className='card-thumbnail-wrapper'>
-              <img src={car.picture} className='card-thumbnail' alt={`${car.brand} ${car.model}`} />
-            </div>
-            <div className='card-content'>
-              <h2>{car.brand}</h2>
-              <h5>{car.model}</h5>
-              <p>{car.description}</p>
-              <button onClick={() => handleButtonClick(car.id)}>Add Car</button>
+          <div className='bg-white shadow-lg rounded-lg overflow-hidden' key={car.id}>
+            <img src={car.picture} alt={`${car.brand} ${car.model}`} className='w-full h-32 sm:h-48 object-cover' />
+            <div className='p-4'>
+              <h2 className='text-lg font-bold'>{car.brand}</h2>
+              <h5 className='text-md'>{car.model}</h5>
+              <p className='text-sm text-gray-600'>{car.description}</p>
+              <button onClick={() => handleButtonClick(car.id)} className='mt-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300'>Add Car</button>
             </div>
           </div>
         ))}
