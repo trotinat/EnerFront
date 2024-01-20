@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AuthService from '../Auth/AuthService'; // Replace with the correct path to AuthService
+import AuthService from '../Auth/AuthService';
 import axios from 'axios';
 
 const LoginSignup = () => {

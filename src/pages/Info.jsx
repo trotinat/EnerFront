@@ -9,7 +9,7 @@ const Info = () => {
   const [checkedCars, setCheckedCars] = useState({});
   const [fuelLiters, setFuelLiters] = useState({});
   const [values, setValues] = useState({
-    price: 12, // Set the fixed price per liter
+    price: 12,
     gazPerLiter: 10,
   });
 
